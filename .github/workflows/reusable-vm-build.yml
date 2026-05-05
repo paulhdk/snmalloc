@@ -39,6 +39,8 @@ jobs:
   build:
     runs-on: ${{ inputs.host-os }}
     timeout-minutes: ${{ inputs.timeout-minutes }}
+    env:
+      DEBUG: 1
     steps:
     - uses: actions/checkout@v4
 
@@ -63,6 +65,9 @@ jobs:
       if: inputs.vm-type == 'netbsd'
       uses: vmactions/netbsd-vm@v1
       with:
+        envs: "DEBUG"
+        debug: true
+        debug-on-eroor: true
         release: ${{ inputs.vm-version }}
         usesh: true
         mem: 8192
