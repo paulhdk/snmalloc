@@ -73,6 +73,8 @@ jobs:
         mem: 8192
         copyback: false
         prepare: |
+          mkdir -p "$(dirname '$GITHUB_WORKSPACE')"
+          ln -snf /root/work "$GITHUB_WORKSPACE"
           ${{ inputs.dependencies }}
         run: |
           set -e
